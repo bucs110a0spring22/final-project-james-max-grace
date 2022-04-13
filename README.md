@@ -2,7 +2,7 @@
 # CS110 Project Proposal
 # << Project Title >>
 ## CS 110 Final Project
-### << Semester, Year >>
+### << Spring, 2022 >>
 ### [Assignment Description](https://docs.google.com/document/d/1H4R6yLL7som1lglyXWZ04RvTp_RvRFCCBn6sqv-82ps/edit#)
 
 << [repl](#) >>
@@ -10,7 +10,7 @@
 << [link to demo presentation slides](#) >>
 
 ### Team: << team name >>
-#### << Team Members >>
+#### Grace Barbara, Max Argenson, James Brone
 
 ***
 
@@ -23,7 +23,7 @@
 ## User Interface Design *(Front End Specialist)*
 
 * << A wireframe or drawing of the user interface concept along with a short description of the interface. You should have one for each screen in your program. >>
-    * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
+    * 
 * << You should also have a screenshot of each screen for your final GUI >>
 
 ***        
