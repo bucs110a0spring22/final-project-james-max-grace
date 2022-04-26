@@ -1,7 +1,10 @@
 import pygame
 import random
 
+
+
 class Collisions(pygame.sprite.spritecollide):
-	def __init__(self):
-		
+	if pygame.sprite.spritecolllideany(player, FallingObjects):
+     self.decreasehealth=
+
 	

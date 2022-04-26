@@ -1,6 +1,6 @@
 class Controller:
 	def __init__(self, width=480, height=320):
-  	pygame.init()
+    pygame.init()
     self.width = width
     self.height = height
     Utility.screen_height = height
@@ -11,6 +11,6 @@ class Controller:
 	def menuloop(self):
 		#user select easy, medium, hard difficulty
 
-	def gameoverloop(self):
-		
+	def gameoverloop(text,size,color,x,y):
+		self.draw_text("Game Over")
 		
