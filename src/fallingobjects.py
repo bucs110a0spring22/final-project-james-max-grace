@@ -9,9 +9,15 @@ class FallingObjects(pygame.sprite.Sprite):
     self.rect.y = y
 		
 	def move(self):
+    
+		
 #generate random location for the object to appear
 #have blocks fall at certain speed depending on which level of difficulty was chosen
 #blocks disappear when they hit the bottom of the screen
 
 
 #create a group w these sprites
+
+
+#use update() method
+#increase y by 1 every frome

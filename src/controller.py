@@ -3,8 +3,7 @@ class Controller:
     pygame.init()
     self.width = width
     self.height = height
-    Utility.screen_height = height
-    Utility.screen_width = width
+    self.screen = 
 
 	def mainloop(self):
 

@@ -1,6 +1,7 @@
 import pygame
 import random
-from src import collision
+import time
+import sys
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, x=0, y=0, filenames=None):
@@ -11,6 +12,10 @@ class Player(pygame.sprite.Sprite):
     self.rect = self.image.get_rect() 
     self.rect.x = x
     self.rect.y = y
+
+  def collison(self, fallingobject):
+    if pygame.sprite.spritecollideany(Player, FallingObjects):
+      playerHealth()
 	
 	def move(self, direction):
 		if direction == "left":
@@ -22,8 +27,9 @@ class Player(pygame.sprite.Sprite):
     elif direction == "down":
             self.rect.y = self.rect.y + 1
   
-	def playerHealth(self, fallingobject):
+	def playerHealth(self):
 	#player loses 1/3 health when collision occurs
 
-		
-		
+
+
+
