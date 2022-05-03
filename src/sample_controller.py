@@ -11,12 +11,17 @@ class Controller:
     #setup pygame data
     
   def mainloop(self):
-    #select state loop
-    
-  
-  ### below are some sample loop states ###
+    ##unfinished
 
+    while True:
+      if(self.state == "GAME"):
+        self.gameLoop()
+      elif(self.state == "GAMEOVER"):
+        self.gameOver()
+  
   def menuloop(self):
+        ##unfinished
+
     while True:
 
       screen.fill((0,0,0))    ## makes the entire screen black
@@ -39,23 +44,28 @@ class Controller:
       pygame.draw.rect(screen, (255, 0, 0), EasyMode)
       pygame.draw.rect(screen, (255, 0, 0), MediumMode)
       pygame.draw.rect(screen, (255, 0, 0), HardMode)
-      #event loop
-
-      #update data
-
-      #redraw
+    
       
   def gameloop(self):
-    running = True
-      #event loop
-
-      #update data
-
-      #redraw
+        ##unfinished
+    while self.state == "GAME":
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          sys.exit()
+        if event.type == pygame.KEYDOWN:
+          if (event.key == pygame.K_LEFT):
+            self.hero.move_left()
+          elif(event.key == pygame.K_RIGHT):
+            self.hero.move_right()
     
   def gameoverloop(self):
-      #event loop
-
-      #update data
-
-      #redraw
+    ##unfinished
+      self.hero.kill()
+        myfont = pygame.font.SysFont(None, 30)
+        message = myfont.render('Game Over', False, (0, 0, 0))
+        self.screen.blit(message, (self.width / 2, self.height / 2))
+        pygame.display.flip()
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()

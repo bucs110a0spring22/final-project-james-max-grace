@@ -7,8 +7,8 @@ class Player(pygame.sprite.Sprite):
 	def __init__(self, x=0, y=0, filenames=None):
 		super()
 		self.image_set = [pygame.image.load(file_name) for f in filenames]
-    self.player_health=100
 		self.current_image=0
+    self.player_health=100
     self.image = self.image_set[self.current_image] 
     self.rect = self.image.get_rect() 
     self.rect.x = x
@@ -31,6 +31,6 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = self.rect.y + 1
    
   def death():
-
+#death sequence#
 
 
