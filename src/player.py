@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
 		super()
 		self.image_set = [pygame.image.load(file_name) for f in filenames]
 		self.current_image=0
-    self.player_health=100
+    self.player_health=3
     self.image = self.image_set[self.current_image] 
     self.rect = self.image.get_rect() 
     self.rect.x = x
@@ -16,21 +16,15 @@ class Player(pygame.sprite.Sprite):
 
   def collison(self, fallingobject):
     if pygame.sprite.spritecollideany(Player, FallingObjects):
-      player_health-=33
-  if player_health==0:
-   death()
+      player_health-=1
+  	if player_health==0:
 	
 	def move(self, direction):
 		if direction == "left":
 			self.rect.x = self.rect.x - 1
 		elif direction == "right":
             self.rect.x = self.rect.x + 1
-		elif direction == "up":
-            self.rect.y = self.rect.y - 1 
-    elif direction == "down":
-            self.rect.y = self.rect.y + 1
    
-  def death():
-#death sequence#
+
 
 

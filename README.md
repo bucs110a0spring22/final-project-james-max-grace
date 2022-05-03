@@ -60,15 +60,15 @@ The Project is broken down into the following file structure:
 
    * You must outline the team member roles and who was responsible for each class/method, both individual and collaborative.
 
-### Software Lead - << name >>
+### Software Lead - James
 
 << Worked as integration specialist by... >>
 
-### Front End Specialist - << name >>
+### Front End Specialist - Max
 
 << Front-end lead conducted significant research on... >>
 
-### Back End Specialist - << name >>
+### Back End Specialist - Grace
 
 << The back end specialist... >>
 
@@ -80,7 +80,12 @@ The Project is broken down into the following file structure:
 ## ATP
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
-| ----------------------|:-------------:| -----------------:| -------------- |
-|  1  | Run Counter Program  | GUI window appears with count = 0  |          |
-|  2  | click count button  | display changes to count = 1 |                 |
+| :----------------------:|:-------------:| :-----------------:| :--------------:|
+|  1  | Press Run Button  | Main menu screen displays with play button |          |
+|  2  | Click Play on display screen  | A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and gain speed incrementally with time. Timer begins counting up from zero. |          |
+|  3  | Press Right Arrow | Player moves to the right. |           |
+|  4  | Press Left Button | Player moves to the left. |          |
+
+
+
 etc...
