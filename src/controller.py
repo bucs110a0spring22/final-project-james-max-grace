@@ -4,12 +4,13 @@ import sys
 
 class Controller:
 
-  screen = pygame.display.set_mode((500, 500),0,32) ##sets the scre
+  screen = pygame.display.set_mode((500, 500),0,32) ##sets the screen
   font = pygame.font.SysFont(None, 20) ##sets the font of the writing
   
   def __init__(self):
     pygame.init()
-    self.screen=di
+    self.screen = pygame.display.set_mode((0, 0))
+    
     
     #setup pygame data
     
