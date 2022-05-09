@@ -85,7 +85,7 @@ The Project is broken down into the following file structure:
 |  2  | Click Play on display screen  | A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and gain speed incrementally with time. Timer begins counting up from zero. |          |
 |  3  | Press Right Arrow | Player moves to the right. |           |
 |  4  | Press Left Button | Player moves to the left. |          |
-
+|  5  | player is hit by falling object  |player loses one third of its health| |
 
 
 etc...
