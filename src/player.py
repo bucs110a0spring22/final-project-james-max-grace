@@ -10,9 +10,9 @@ class Player(pygame.sprite.Sprite):
 		self.player_health=3
 		self.speed = 5
 			
-	def move_left(self, direction):
+	def move_left(self):
 		self.rect.x = self.rect.x - 1
-	def move_right(self, direction):
+	def move_right(self):
 		self.rect.x = self.rect.x + 1
    
 

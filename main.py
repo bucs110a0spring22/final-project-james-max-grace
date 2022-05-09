@@ -9,7 +9,7 @@ def main():
     '''
     pygame.init()
     main_window = controller.Controller()
-    main_window.mainLoop()
+    main_window.mainloop()
 
 
 main()

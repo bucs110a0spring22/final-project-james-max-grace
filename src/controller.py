@@ -1,7 +1,6 @@
-import pygame
+import pygame, sys
 from src import player
 from src import fallingobjects
-
 
 class Controller:
   def __init__(self, width=600, height=400):
@@ -12,6 +11,7 @@ class Controller:
     self.frame_count=0
     self.background= pygame.image.load('assets/CS110GameBackground.jpg').convert_alpha()
     self.background2 = pygame.image.load("assets/CS110GameOver.png").convert_alpha()
+    self.background3 = pygame.image.load("assets/CS110MenuBackground.png").convert_alpha()
     self.game_state = "BEGIN"
     self.player_state = "RUN"
     self.width = width
@@ -27,24 +27,23 @@ class Controller:
     self.obj_list = []       ##idk
     self.obj_sprites = pygame.sprite.Group()
     self.score_count = 0
-    self.font=pygame.font.Font(None,25)
 
     
-  def mainLoop(self):
+  def mainloop(self):
     while self.alive == True:
       if self.game_state == "BEGIN":
         self.gameIntroScreen()
       elif self.game_state == "GAME":
-        self.gameLoop()
+        self.gameloop()
       elif self.game_state == "LOSE":
         self.gameOverScreen()
 
 	
   def gameIntroScreen(self):
 		 background_size = self.screen.get_size()
-		 background_rect = self.background.get_rect()
+		 background_rect = self.background3.get_rect()
 		 background_screen=pygame.display.set_mode(background_size)
-		 background_screen.blit(self.background, background_rect)
+		 background_screen.blit(self.background3, background_rect)
 		 my_font = pygame.font.SysFont("impact", 30)
 		 title_font = pygame.font.SysFont("impact", 30)
 		 name_of_game = title_font.render('Falling Frenzy', False, self.white)
@@ -58,22 +57,63 @@ class Controller:
 			 if event.type == pygame.KEYDOWN:
 				 if(event.key == pygame.K_SPACE):
 					 self.game_state = "GAME"
-					 self.mainLoop()
-    
+					 self.mainloop()
     
   def gameloop(self):
-    while self.alive():
+		 background_size = self.screen.get_size()
+		 background_rect = self.background.get_rect()
+		 background_screen = pygame.display.set_mode(background_size)
+		 background_screen.blit(self.background, background_rect)
+		 while self.alive == True:
+       
+			 for event in pygame.event.get():
+				 if event.type == pygame.QUIT:
+					 sys.exit()
+				 if event.type == pygame.KEYDOWN:
+					 if event.key == pygame.K_RIGHT:
+						 self.player.move_right()
+					 if event.key == pygame.K_LEFT:
+						 self.player.move_left()
+						 
+			 #if pygame.player.Player.spritecollide(self.FallingObjects,self.player,True):
+				 #player.health-=1
+
+         
+
+        
+
+
+  '''
       WHITE=(225,225,225)
+      time_font=pygame.font.Font.bold(None,25)
       total_seconds=self.frame_count//self.FPS
       minutes=total_seconds//60
       seconds=total_seconds
       output_string="Time Alive: {0:02}:{1:02}".format(minutes,seconds)
-      text=self.font.render(output_string, True, WHITE)
+      text=time_font.render(output_string, True, WHITE)
       self.screen.blit(text,[0,250])
+
+
+
+          
+	def gameOverScreen(self):
+		 background_size = self.screen.get_size()
+     background_rect = self.background2.get_rect()
+     background_screen = pygame.display.set_mode(background_size)
+     background_screen.blit(self.background2, background_rect)
+     my_font = pygame.font.SysFont("impact", 30)
+     title_font = pygame.font.SysFont("impact", 50)
+     game_over = title_font.render('GAME OVER!', False, (255,0,0))
+     background_screen.blit(game_over, ((self.width / 3) + 50, self.height / 4))
+     background_screen.blit(your_score, ((self.width / 3) - 200, self.height / 1.5))
+     pygame.display.flip()
+     for event in pygame.event.get():
+       if event.type == pygame.MOUSEBUTTONDOWN:
+         sys.exit()
       
       
     
-
+  '''
 
 
 

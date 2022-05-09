@@ -82,10 +82,10 @@ The Project is broken down into the following file structure:
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | :----------------------:|:-------------:| :-----------------:| :--------------:|
 |  1  | Press Run Button  | Main menu screen displays with play button |          |
-|  2  | Click Play on display screen  | A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and gain speed incrementally with time. Timer begins counting up from zero. |          |
+|  2  | Click Space Bar | Main display screen ends and game screen appears. A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and gain speed incrementally with time. Timer starts at zero and continues counting until player dies.|          |
 |  3  | Press Right Arrow | Player moves to the right. |           |
 |  4  | Press Left Button | Player moves to the left. |          |
-|  5  | player is hit by falling object  |player loses one third of its health| |
+
 
 
 etc...
