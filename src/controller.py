@@ -6,9 +6,9 @@ class Controller:
   def __init__(self, width=600, height=400):
 		 '''
 		initializes screen, game states and sprites
-			params: width= (int)width of screen
+			:params = width= (int)width of screen
 							height= (int) height of screen
-			returns: None
+			:returns = None
 	   '''
 		 self.screen = pygame.display.set_mode((width, height))
 		 self.obj_layer = pygame.display.set_mode((width, height))
@@ -38,8 +38,8 @@ class Controller:
   def mainloop(self):
 		 '''
 		checks game state and creates intro screen, runs game loop, or creates game over screen
-		params: None
-		returns: None
+		:params = None
+		:returns = None
 		 '''
 		 while self.alive == True:
 			  if self.game_state == "BEGIN":
@@ -53,8 +53,8 @@ class Controller:
   def gameIntroScreen(self):
 		 '''
 		creates intro main menu screen
-		params: None
-		returns: None
+		:params = None
+		:returns = None
 		'''
 		 background_size = self.screen.get_size()
 		 background_rect = self.background3.get_rect()
@@ -78,8 +78,8 @@ class Controller:
   def gameloop(self):
 		 '''
 		creates main game screen and runs main game events
-		params: None
-		returns: None
+		:params = None
+		:returns = None
 		'''
 		 background_size = self.screen.get_size()
 		 background_rect = self.background.get_rect()
@@ -99,8 +99,8 @@ class Controller:
   def gameOverScreen(self):
 		 '''
 		creates game over screen
-		params: None
-		returns: None
+		:params = None
+		:returns = None
 		'''
 		 background_size = self.screen.get_size()
 		 background_rect = self.background2.get_rect()
