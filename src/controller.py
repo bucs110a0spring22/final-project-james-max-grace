@@ -5,7 +5,7 @@ from src import player
 from src import fallingobject
 
 class Controller:
-  def __init__(self, width=600, height=400):
+  def __init__(self, width=800, height=400):
 		 '''
 		initializes screen, game states and sprites
 			:params = width= (int)width of screen
@@ -56,9 +56,9 @@ class Controller:
 		 background_rect = self.background3.get_rect()
 		 background_screen=pygame.display.set_mode(background_size)
 		 background_screen.blit(self.background3, background_rect)
-		 my_font = pygame.font.SysFont("impact", 30)
+		 my_font = pygame.font.SysFont("impact", 25)
 		 instructions = my_font.render('Use arrows to move left and right. Avoid the falling blocks. Press space to play.', False, (255,255,255))
-		 background_screen.blit(instructions, ((self.width / 3) - 200, self.height / 1.5))
+		 background_screen.blit(instructions, (50, 350))
 		 pygame.display.flip()
 		 for event in pygame.event.get():
 			 if event.type == pygame.QUIT:
