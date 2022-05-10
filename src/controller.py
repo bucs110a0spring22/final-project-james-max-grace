@@ -1,6 +1,8 @@
 import pygame, sys
+import random
+import time
 from src import player
-from src import fallingobjects
+from src import fallingobject
 
 class Controller:
   def __init__(self, width=600, height=400):
@@ -17,21 +19,20 @@ class Controller:
 		 self.frame_count=0
 		 self.background= pygame.image.load('assets/CS110GameBackground.jpg').convert_alpha()
 		 self.background2 = pygame.image.load("assets/CS110GameOver.png").convert_alpha()
-		 self.background3 = pygame.image.load("assets/CS110MenuBackground.png").convert_alpha()
+		 self.background3 = pygame.image.load("assets/backgroundscreen.png").convert_alpha()
 		 self.game_state = "BEGIN"
 		 self.player_state = "RUN"
 		 self.width = width
 		 self.height = height
 		 self.white = (255,255,255)
 		 self.alive = True
-		 self.player = player.Player("karl", 50, 100, "assets/CS110Character2.png")
-		 self.fallingobjects = fallingobjects.FallingObjects(100, 100, 'assets/fallingobject.png')
+		 self.player = player.Player("karl", 10, 15, "assets/CS110Character2.png")
+		 self.fallingobjects = pygame.sprite.Group()
 		 self.x = 0
-		 self.all_sprites = pygame.sprite.Group((self.player))
+		 self.all_sprites = pygame.sprite.Group((self.player,) + tuple(self.fallingobjects))
 		 self.clock = pygame.time.Clock()
-		 self.game_speed = 10
-		 self.obj_list = []       ##idk
-		 self.obj_sprites = pygame.sprite.Group()
+		 self.initial_time = time.time()
+		 self.game_speed = 10       
 		 self.score_count = 0
 
     
@@ -61,10 +62,7 @@ class Controller:
 		 background_screen=pygame.display.set_mode(background_size)
 		 background_screen.blit(self.background3, background_rect)
 		 my_font = pygame.font.SysFont("impact", 30)
-		 title_font = pygame.font.SysFont("impact", 30)
-		 name_of_game = title_font.render('Falling Frenzy', False, self.white)
-		 instructions = my_font.render('Right Arrow to move right  Left Arrow to move left  Press space to play.', False, self.white)
-		 background_screen.blit(name_of_game, ((self.width / 3) + 50, self.height / 4))
+		 instructions = my_font.render('Use arrows to move left and right. Avoid the falling blocks. Press space to play.', False, self.white)
 		 background_screen.blit(instructions, ((self.width / 3) - 200, self.height / 1.5))
 		 pygame.display.flip()
 		 for event in pygame.event.get():
@@ -73,7 +71,10 @@ class Controller:
 			 if event.type == pygame.KEYDOWN:
 				 if(event.key == pygame.K_SPACE):
 					 self.game_state = "GAME"
-					 self.mainloop()
+					 self.gameloop()
+
+  #def draw_fallingblock(self):
+		
     
   def gameloop(self):
 		 '''
@@ -86,15 +87,29 @@ class Controller:
 		 background_screen = pygame.display.set_mode(background_size)
 		 background_screen.blit(self.background, background_rect)
 		 while self.alive == True:
-       
+			 pygame.display.flip()
+				 
 			 for event in pygame.event.get():
 				 if event.type == pygame.QUIT:
+					 pygame.quit()
 					 sys.exit()
 				 if event.type == pygame.KEYDOWN:
 					 if event.key == pygame.K_RIGHT:
 						 self.player.move_right()
 					 if event.key == pygame.K_LEFT:
 						 self.player.move_left()
+					
+			 num_blocks = 5
+			 for i in range(num_blocks):
+				 x = random.randrange(0, 601)
+				 y = 0
+				 self.fallingobjects.add(fallingobject.FallingObject(x, y, 'assets/fallingobject.png'))
+			 self.all_sprites.draw(self.screen)
+			 self.fallingobjects.update()
+				 
+
+				
+				
 					
   def gameOverScreen(self):
 		 '''
@@ -106,11 +121,11 @@ class Controller:
 		 background_rect = self.background2.get_rect()
 		 background_screen = pygame.display.set_mode(background_size)
 		 background_screen.blit(self.background2, background_rect)
-		 my_font = pygame.font.SysFont("impact", 30)
+		 #my_font = pygame.font.SysFont("impact", 30)
 		 title_font = pygame.font.SysFont("impact", 50)
 		 game_over = title_font.render('GAME OVER!', False, (255,0,0))
 		 background_screen.blit(game_over, ((self.width / 3) + 50, self.height / 4))
-		 background_screen.blit(your_score, ((self.width / 3) - 200, self.height / 1.5))
+		 #background_screen.blit(your_score, ((self.width / 3) - 200, self.height / 1.5))
 		 pygame.display.flip()
 		 for event in pygame.event.get():
 			 if event.type == pygame.MOUSEBUTTONDOWN:
