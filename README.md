@@ -37,10 +37,13 @@
         * a short description of the module
 * Class Interface Design
     * << A simple drawing that shows the class relationships in your code (see below for an example). >>
-        * ![class diagram](assets/class_diagram.jpg)
+        * ![class diagram](assets/class_diagram.jpg) 
     * This does not need to be overly detailed, but should show how your code fits into the Model/View/Controller paradigm.
 * Classes
-    * << You should have a list of each of your classes with a description. >>
+    * Player-
+    * Falling Objects-
+    * Stopwatch-
+    * Controller-
 
 ## Project Structure *(Software Lead)*
 
@@ -60,15 +63,15 @@ The Project is broken down into the following file structure:
 
    * You must outline the team member roles and who was responsible for each class/method, both individual and collaborative.
 
-### Software Lead - James
+### Software Lead - James Brone
 
 << Worked as integration specialist by... >>
 
-### Front End Specialist - Max
+### Front End Specialist - Max Argenson
 
 << Front-end lead conducted significant research on... >>
 
-### Back End Specialist - Grace
+### Back End Specialist - Grace Barbara
 
 << The back end specialist... >>
 
@@ -81,8 +84,8 @@ The Project is broken down into the following file structure:
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | :----------------------:|:-------------:| :-----------------:| :--------------:|
-|  1  | Press Run Button  | Main menu screen displays with play button |          |
-|  2  | Click Space Bar | Main display screen ends and game screen appears. A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and gain speed incrementally with time. Timer starts at zero and continues counting until player dies.|          |
+|  1  | Press Run Button  | Main menu screen displays. |          |
+|  2  | Click Space Bar to exit menu and begin game | Main display screen ends and game screen appears. A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and disappear once they reach the bottom. Timer starts at zero and continues counting up until player dies.|          |
 |  3  | Press Right Arrow | Player moves to the right. |           |
 |  4  | Press Left Button | Player moves to the left. |          |
 
