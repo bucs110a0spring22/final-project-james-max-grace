@@ -9,7 +9,7 @@
 
 << [link to demo presentation slides](#) >>
 
-### Team: << team name >>
+### Team: Goon Squad
 #### Grace Barbara, Max Argenson, James Brone
 
 ***
@@ -51,7 +51,6 @@ Our project is a simple yet fun game where the player moves from left to right o
 ## Project Structure *(Software Lead)*
 
 The Project is broken down into the following file structure:
-
 * main.py
 * src
     * <all of your python files should go here>
@@ -87,9 +86,10 @@ As back end specialist, I helped with the modeling portion of the work by coding
 | :----------------------:|:-------------:| :-----------------:| :--------------:|
 |  1  | Press Run Button  | Main menu screen displays. |          |
 |  2  | Click Space Bar to exit menu and begin game | Main display screen ends and game screen appears. A timer, player, and randomly generated blocks display on the screen. Blocks begin falling from the top of the screen and disappear once they reach the bottom. Timer starts at zero and continues counting up until player dies.|          |
-|  3  | Press Right Arrow | Player moves to the right. |           |
-|  4  | Press Left Button | Player moves to the left. |          |
-
+|  3  | Press Right Arrow Button| Player moves to the right. |           |
+|  4  | Press Left Arrow Button | Player moves to the left. |          |
+|  5  | Hold down Right Arrow Button| Player moves to the right as long as right arrow button remains pressed  |
+|  6  | Hold down Left Arrow Button| Player moves to the left as long as left arrow button remains pressed  |
 
 
 etc...
