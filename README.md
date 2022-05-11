@@ -16,7 +16,7 @@
 
 ## Project Description *(Software Lead)*
 
-<< Give an overview of your project >>
+Our project is a simple yet fun game where the player moves from left to right on the screen in order to avoid falling blocks. The player has three lives, and each collision with a block takes away one life. A timer is also implemented in order to display how long the player has survived. After the player dies the time survived and score will be displayed, as well as a button to restart the game again.
 
 ***    
 
@@ -29,8 +29,8 @@
   * This screen is accessed when the user clicks the space button in the main menu start screen. On this screen, the character can move left/right by using the right of left arrow keys. There would also be objects spawning in at random x positions at the top of the screen. These object will fall to the bottom of the screen. Once the player dies, they will be sent to the game over screen
   * ![startscreen](assets/CS110GameBackground.jpg)
 * << Game Over Screen >>
-  * This screen is accessed when the character dies. A background displaying "Game Over" will show. The user can click on the green "Run" button
-
+  * This screen is accessed when the character dies. A background displaying "Game Over" will show. The user can click on the green "Run" button to restart the game. A message will be displayed showing how to do that
+  * ![startscreen](assets/CS110GameOver.png)
 ***        
 
 ## Program Design *(Backend Specialist)*
@@ -62,9 +62,7 @@ The Project is broken down into the following file structure:
 
 ***
 
-## Tasks and Responsibilities *(Software Lead)*
-
-   * You must outline the team member roles and who was responsible for each class/method, both individual and collaborative.
+## Tasks and Responsibilities
 
 ### Software Lead - James Brone
 
@@ -72,9 +70,7 @@ I worked as software lead/integration specialist by ensuring dryness and compata
 
 ### Front End Specialist - Max Argenson
 
-<< Front-end lead conducted significant research on... 
-   
-   >>
+<< Front-end lead conducted significant research on the controller class and the GUI. I had to do research on how to transition between the three different states (Menu screen, Game screen, and Game Over screen) and how to modify them to add this such as an image as a background or text for example. I worked with the Back end Specialist to implement sprites such as the character and the falling objects. The controller is where most of the code is found and where the GUI is created >>
 
 ### Back End Specialist - Grace Barbara
 

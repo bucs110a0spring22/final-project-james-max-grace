@@ -17,21 +17,25 @@ class Controller:
         self.background= pygame.image.load('assets/CS110GameBackground.jpg').convert_alpha()
         self.background2 = pygame.image.load("assets/CS110GameOver.png").convert_alpha()
         self.background3 = pygame.image.load("assets/backgroundscreen.png")
-        #self.background3 = pygame.transform.smoothscale(self.background3, (width, height))
         self.game_state = "BEGIN"
         self.width = width
         self.height = height
+        self.lower_boundary = 500
+        self.move_left = False
+        self.move_right = False
         self.alive = True
         self.player = player.Player("karl", 50, 325, "assets/CS110Character2.png")
         self.player.image = pygame.transform.smoothscale(self.player.image, (50, 60))
+        self.fallingobject = fallingobject.FallingObject((random.randrange(0,550)), 0, "assets/fallingobject.png")
         self.fallingobjects = pygame.sprite.Group()
         self.num_objects = 5
-        #self.x = 0
         self.all_sprites = pygame.sprite.Group((self.player,))
         self.clock = pygame.time.Clock()
         self.initial_time = time.time()
-        self.game_speed = 10
+        #self.game_speed = 10
         self.score_count = 0
+        #self.frame_count=0
+        #self.frame_rate=60
 
     
     def mainloop(self):
@@ -86,27 +90,42 @@ class Controller:
                  if event.type == pygame.QUIT:
                      pygame.quit()
                      sys.exit()
+								#establish player movement controls
                  if event.type == pygame.KEYDOWN:
                      if event.key == pygame.K_RIGHT:
-                         self.player.move_right()
+                         self.move_right = True
                      if event.key == pygame.K_LEFT:
-                         self.player.move_left()
-            
+                         self.move_left = True
+                 if event.type == pygame.KEYUP:
+                     if event.key == pygame.K_RIGHT:
+                         self.move_right = False
+                     if event.key == pygame.K_LEFT:
+                         self.move_left = False
+            if(self.move_right):
+             self.player.move_right()
+            if(self.move_left):
+              self.player.move_left()
+
+					
             for i in range(self.num_objects):
-               obj = fallingobject.FallingObject((random.randrange(0,800)), 0, "assets/fallingobject.png")
-               self.fallingobjects.add( (obj,) )
+             obj = fallingobject.FallingObject((random.randrange(0,550)), 0, "assets/fallingobject.png")
+             self.fallingobjects.add( (obj,) )
+
+            if self.fallingobject.rect.y == self.lower_boundary:
+             self.fallingobject.kill()
+							
             self.all_sprites.add(self.fallingobjects)
-    					
-            hits = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
+
+					#collisions
+            collide = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
             if self.player.health==0:
               self.game_state == "LOSE"
-            if(hits):
+            if(collide):
               self.player.health-=1
 
 
 					  #update screen
-            self.screen.blit(self.background, (0,0))
-            #self.fallingobjects.update()
+            self.screen.blit(self.background, (0, 0))
             self.all_sprites.update()
             self.fallingobjects.draw(self.screen)
             self.all_sprites.draw(self.screen)
@@ -132,6 +151,10 @@ class Controller:
         game_over = title_font.render('Click "Run" to try again', False, (255,0,0))
         background_screen.blit(game_over,((self.width / 3) + 50, self.height / 4))
          #background_screen.blit(your_score, ((self.width / 3) - 200, self.height / 1.5))
+
+
+        self.screen.blit(self.background2, (0,0))
+      
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:

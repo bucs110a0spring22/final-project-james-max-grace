@@ -11,9 +11,9 @@ class Player(pygame.sprite.Sprite):
 		self.speed = 5
 			
 	def move_left(self):
-		self.rect.x = self.rect.x - 10
+		self.rect.x = self.rect.x - 1
 	def move_right(self):
-		self.rect.x = self.rect.x + 10
+		self.rect.x = self.rect.x + 1
 
 	#def draw_player(self, screen):
 		#screen.blit(self.image, self.rect)
