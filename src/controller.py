@@ -32,10 +32,7 @@ class Controller:
         self.all_sprites = pygame.sprite.Group((self.player,))
         self.clock = pygame.time.Clock()
         self.initial_time = time.time()
-        #self.game_speed = 10
         self.score_count = 0
-        #self.frame_count=0
-        #self.frame_rate=60
 
     
     def mainloop(self):
@@ -106,23 +103,25 @@ class Controller:
             if(self.move_left):
               self.player.move_left()
 
-					
-            for i in range(self.num_objects):
-             obj = fallingobject.FallingObject((random.randrange(0,550)), 0, "assets/fallingobject.png")
-             self.fallingobjects.add( (obj,) )
-
-            if self.fallingobject.rect.y == self.lower_boundary:
-             self.fallingobject.kill()
+            if len(self.all_sprites) == 1:
+             for i in range(self.num_objects):
+               obj = fallingobject.FallingObject((random.randrange(0,550)), self.height, "assets/fallingobject.png")
+               self.fallingobjects.add( (obj,) )
 							
             self.all_sprites.add(self.fallingobjects)
+            if self.fallingobject.rect.y == self.lower_boundary:
+             self.fallingobjects.kill()
 
 					#collisions
             collide = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
-            if self.player.health==0:
-              self.game_state == "LOSE"
+          ##testing
             if(collide):
               self.player.health-=1
-
+              print("-1 health")
+            if self.player.health == 0:
+              self.game_state == "LOSE"
+              self.gameOverScreen()
+              break
 
 					  #update screen
             self.screen.blit(self.background, (0, 0))
@@ -130,10 +129,7 @@ class Controller:
             self.fallingobjects.draw(self.screen)
             self.all_sprites.draw(self.screen)
             pygame.display.flip()
-				 
-
-				
-				
+				 				
 					
     def gameOverScreen(self):
 			
@@ -146,22 +142,15 @@ class Controller:
         background_rect = self.background3.get_rect()
         background_screen=pygame.display.set_mode(background_size)
         background_screen.blit(self.background3, background_rect)
-        #my_font = pygame.font.SysFont("impact", 30)
-        title_font = pygame.font.SysFont("impact", 50)
-        game_over = title_font.render('Click "Run" to try again', False, (255,0,0))
-        background_screen.blit(game_over,((self.width / 3) + 50, self.height / 4))
-         #background_screen.blit(your_score, ((self.width / 3) - 200, self.height / 1.5))
-
-
-        self.screen.blit(self.background2, (0,0))
       
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                sys.exit()
-        background_size = self.screen.get_size()
-        background_rect = self.background2.get_rect()
-        background_screen = pygame.display.set_mode(background_size)
-        background_screen.blit(self.background2, background_rect)
-        pygame.display.flip()
+        title_font1 = pygame.font.SysFont("sectar", 50)
+        title_font2 = pygame.font.SysFont("impact", 50)
+        
+        game_over1 = title_font1.render('GAME OVER', False, (255,0,0))
+        game_over2 = title_font2.render('Click "Run" to try again', False, (255,0,0))
 
+        self.screen.fill((0,0,0))
+        background_screen.blit(game_over1,((self.width / 2), self.height / 2))
+        background_screen.blit(game_over2,((self.width / 2), (self.height / 2)+100)
+			  pygame.display.flip()
+			
