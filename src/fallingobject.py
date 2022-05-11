@@ -11,4 +11,4 @@ class FallingObject(pygame.sprite.Sprite):
 		self.speed = 1
 		
 	def update(self):
-		self.rect.y+=1
+		self.rect.y+=2
