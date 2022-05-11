@@ -23,11 +23,11 @@ class Controller:
         self.height = height
         self.alive = True
         self.player = player.Player("karl", 50, 325, "assets/CS110Character2.png")
-        self.fallingobject = fallingobject.FallingObject((random.randrange(0, 20)), height, "assets/fallingobject.png")
         self.player.image = pygame.transform.smoothscale(self.player.image, (50, 60))
         self.fallingobjects = pygame.sprite.Group()
-        self.x = 0
-        self.all_sprites = pygame.sprite.Group((self.player,) + tuple(self.fallingobjects))
+        self.num_objects = 5
+        #self.x = 0
+        self.all_sprites = pygame.sprite.Group((self.player,))
         self.clock = pygame.time.Clock()
         self.initial_time = time.time()
         self.game_speed = 10
@@ -82,37 +82,35 @@ class Controller:
 	      '''
         
         while self.game_state == "GAME":
-             
-         for event in pygame.event.get():
-             if event.type == pygame.QUIT:
-                 pygame.quit()
-                 sys.exit()
-             if event.type == pygame.KEYDOWN:
-                 if event.key == pygame.K_RIGHT:
-                     self.player.move_right()
-                 if event.key == pygame.K_LEFT:
-                     self.player.move_left()
+            for event in pygame.event.get():
+                 if event.type == pygame.QUIT:
+                     pygame.quit()
+                     sys.exit()
+                 if event.type == pygame.KEYDOWN:
+                     if event.key == pygame.K_RIGHT:
+                         self.player.move_right()
+                     if event.key == pygame.K_LEFT:
+                         self.player.move_left()
+            
+            for i in range(self.num_objects):
+               obj = fallingobject.FallingObject((random.randrange(0,800)), 0, "assets/fallingobject.png")
+               self.fallingobjects.add( (obj,) )
+            self.all_sprites.add(self.fallingobjects)
+    					
+            hits = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
+            if self.player.health==0:
+              self.game_state == "LOSE"
+            if(hits):
+              self.player.health-=1
 
-         self.fallingobjects = pygame.sprite.Group()
-         num_objects = 5 
-         for i in range(num_objects):
-           x = random.randrange(0, 50)
-           y = 0
-           self.fallingobjects.add(fallingobject.FallingObject(x, y, "assets/fallingobject.png"))
-         self.fallingobject.update()
-					
-         hits = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
-         if self.player.health==0:
-           self.game_state == "LOSE"
-         if(hits):
-           self.player.health-=1
-        
 
-           
-         self.all_sprites.update()
-         self.screen.blit(self.background, (0,0))
-         self.all_sprites.draw(self.screen)
-         pygame.display.flip()
+					  #update screen
+            self.screen.blit(self.background, (0,0))
+            #self.fallingobjects.update()
+            self.all_sprites.update()
+            self.fallingobjects.draw(self.screen)
+            self.all_sprites.draw(self.screen)
+            pygame.display.flip()
 				 
 
 				
@@ -131,7 +129,7 @@ class Controller:
         background_screen.blit(self.background3, background_rect)
         #my_font = pygame.font.SysFont("impact", 30)
         title_font = pygame.font.SysFont("impact", 50)
-        game_over = title_font.render('GAME OVER!', False, (255,0,0))
+        game_over = title_font.render('Click "Run" to try again', False, (255,0,0))
         background_screen.blit(game_over,((self.width / 3) + 50, self.height / 4))
          #background_screen.blit(your_score, ((self.width / 3) - 200, self.height / 1.5))
         pygame.display.flip()
