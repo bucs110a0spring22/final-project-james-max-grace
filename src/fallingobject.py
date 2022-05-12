@@ -9,7 +9,7 @@ class FallingObject(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
-		self.speed = 1
+		self.speed = 5
 		
 	def update(self):
 		self.rect.y+=3

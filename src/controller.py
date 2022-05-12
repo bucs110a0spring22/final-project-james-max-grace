@@ -15,6 +15,7 @@ class Controller:
         self.screen = pygame.display.set_mode((width, height))
         self.clock = pygame.time.Clock()
         self.background1= pygame.image.load('assets/CS110GameBackground.jpg').convert_alpha()
+        self.background1 = pygame.transform.smoothscale(self.background1, (670, 420))
         self.background2 = pygame.image.load("assets/backgroundscreen.png")
         self.game_state = "BEGIN"
         self.width = width
@@ -27,11 +28,10 @@ class Controller:
         self.player = player.Player("karl", 50, 325, "assets/CS110Character2.png")
         self.player.image = pygame.transform.smoothscale(self.player.image, (50, 60))
         self.fallingobject = fallingobject.FallingObject((random.randrange(0,550)), 0, "assets/fallingobject.png")
-        self.floor = floor.Floor(0, 500)
+        self.floor = floor.Floor(0, 415)
         self.fallingobjects = pygame.sprite.Group()
-        self.num_objects = 5
+        self.num_objects = 6
         self.all_sprites = pygame.sprite.Group((self.player,), (self.floor,))
-        self.lower_boundary = 200
         self.clock = pygame.time.Clock()
         self.score_count = 0
         self.music_state = None
@@ -121,10 +121,8 @@ class Controller:
 
             if len(self.fallingobjects) == 0:
              self.generate_blocks()
-
 							
 					#collisions
-						
             playercollide = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
             if(playercollide):
              for object in playercollide:
@@ -153,15 +151,15 @@ class Controller:
             minutes = int(ticks/1000/60%60)
             displayed_time = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
             display = font1.render(displayed_time, False, (255,255,0))
-            self.background_screen.blit(display, (400,20))
+            self.background_screen.blit(display, (400,30))
             self.clock.tick(60)
 					  #score count
             for t in range(seconds):
              self.score_count += 1
-            score = font1.render('Score:' +str(self.score_count), False, (255, 255, 0))
-            self.background_screen.blit(score, (400, 50))
+            score = font1.render('Score: ' +str(self.score_count), False, (255, 255, 0))
+            self.background_screen.blit(score, (400, 60))
             #life display
-            lives = font1.render('Lives:' +str(self.player.health), False, (255,255,0))
+            lives = font1.render('Lives: ' +str(self.player.health), False, (255,255,0))
             self.background_screen.blit(lives, (20,20))
             #update sprites
             self.all_sprites.update()
@@ -193,9 +191,9 @@ class Controller:
         game_over3 = title_font2.render('High Score: '+ highscore, False, (255,0,0))
 
         self.screen.fill((0,0,0))
-        self.background_screen.blit(game_over1,(200, 100))
-        self.background_screen.blit(game_over2,(220, 200))
-        self.background_screen.blit(game_over3,(280, 300))
+        self.background_screen.blit(game_over1,(150, 100))
+        self.background_screen.blit(game_over2,(170, 200))
+        self.background_screen.blit(game_over3,(220, 300))
         pygame.display.flip()
 			  
 			
