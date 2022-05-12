@@ -15,8 +15,7 @@ class Player(pygame.sprite.Sprite):
 	def move_right(self):
 		self.rect.x = self.rect.x + 5
 
-	#def draw_player(self, screen):
-		#screen.blit(self.image, self.rect)
+		
    
 
 
