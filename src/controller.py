@@ -19,7 +19,6 @@ class Controller:
         self.game_state = "BEGIN"
         self.width = width
         self.height = height
-        self.lower_boundary = 400
         self.move_left = False
         self.move_right = False
         self.alive = True
@@ -72,7 +71,11 @@ class Controller:
         background_screen.blit(instructions2, (250, 350))
         pygame.display.flip()
         
-		
+    def generate_blocks(self):
+     for i in range(self.num_objects):
+      obj = fallingobject.FallingObject((random.randrange(0,550)), self.height, "assets/fallingobject.png")
+      self.fallingobjects.add( (obj,) )
+     self.all_sprites.add(self.fallingobjects)
     
     def gameloop(self):
         '''
@@ -102,21 +105,16 @@ class Controller:
             if(self.move_left):
               self.player.move_left()
 
-            if len(self.all_sprites) == 1:
-             for i in range(self.num_objects):
-               obj = fallingobject.FallingObject((random.randrange(0,550)), self.height, "assets/fallingobject.png")
-               self.fallingobjects.add( (obj,) )
-
-            self.all_sprites.add(self.fallingobjects)
-							 
-            for object in self.fallingobjects:
-             if object.rect.y == self.lower_boundary:
-              object.kill()
+            if len(self.fallingobjects) == 0:
+             self.generate_blocks()
 
 					#collisions
             collide = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
+					
             if(collide):
               self.player.health-=1
+              self.fallingobjects.empty()
+
             if self.player.health == 0:
               self.game_state == "LOSE"
               self.highscore_record()
