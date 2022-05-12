@@ -1,6 +1,11 @@
 import pygame
 
 class Floor(pygame.sprite.DirtySprite):
+	'''
+    defines floor dirty sprite into which falling blocks will be killed if collide
+    :params = x(int), y(int)
+    :returns = None
+    '''
 	def __init__(self, x, y):
 		super().__init__()
 		self.dirty = 1

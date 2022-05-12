@@ -75,19 +75,25 @@ class Controller:
         pygame.display.flip()
         
     def generate_blocks(self):
+     '''
+        allows blocks to generate at the top of the screen and adds them to all sprites group
+        :params = None
+        :returns = None
+      '''
      for i in range(self.num_objects):
       obj = fallingobject.FallingObject((random.randrange(0,650)), self.height, "assets/fallingobject.png")
       self.fallingobjects.add( (obj,) )
      self.all_sprites.add(self.fallingobjects)
 
     def sound(self):
+     '''
+        background music
+        :params = None
+        :returns = None
+      '''
      if self.music_state == None:
        self.music_sound.play(-1)
        self.music_state = 1
-
-    #def check_collisions(self):
-     #if pygame.sprite.spritecollide(self.player, self.fallingobjects, True):
-      #return True
     
     def gameloop(self):
         '''
@@ -168,6 +174,11 @@ class Controller:
             pygame.display.flip()
 
     def highscore_record(self):
+     '''
+        writes the score into a file (data permanance)
+        :params = None
+        :returns = None
+     '''
      newfile = open("src/highscore.txt", 'w')
      value = str(self.score_count)
      newfile.write(value)
