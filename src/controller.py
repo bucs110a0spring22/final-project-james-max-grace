@@ -15,7 +15,7 @@ class Controller:
         self.screen = pygame.display.set_mode((width, height))
         self.clock = pygame.time.Clock()
         self.background1= pygame.image.load('assets/CS110GameBackground.jpg').convert_alpha()
-        self.background1 = pygame.transform.smoothscale(self.background1, (670, 420))
+        self.background1 = pygame.transform.smoothscale(self.background1, (800, 420))
         self.background2 = pygame.image.load("assets/backgroundscreen.png")
         self.game_state = "BEGIN"
         self.width = width
@@ -27,7 +27,7 @@ class Controller:
         self.alive = True
         self.player = player.Player("karl", 50, 325, "assets/CS110Character2.png")
         self.player.image = pygame.transform.smoothscale(self.player.image, (50, 60))
-        self.fallingobject = fallingobject.FallingObject((random.randrange(0,550)), 0, "assets/fallingobject.png")
+        self.fallingobject = fallingobject.FallingObject((random.randrange(0,650)), 0, "assets/fallingobject.png")
         self.floor = floor.Floor(0, 415)
         self.fallingobjects = pygame.sprite.Group()
         self.num_objects = 6
@@ -76,7 +76,7 @@ class Controller:
         
     def generate_blocks(self):
      for i in range(self.num_objects):
-      obj = fallingobject.FallingObject((random.randrange(0,550)), self.height, "assets/fallingobject.png")
+      obj = fallingobject.FallingObject((random.randrange(0,650)), self.height, "assets/fallingobject.png")
       self.fallingobjects.add( (obj,) )
      self.all_sprites.add(self.fallingobjects)
 
@@ -151,13 +151,13 @@ class Controller:
             minutes = int(ticks/1000/60%60)
             displayed_time = '{minutes:02d}:{seconds:02d}:{millis}'.format(minutes=minutes, millis=millis, seconds=seconds)
             display = font1.render(displayed_time, False, (255,255,0))
-            self.background_screen.blit(display, (400,30))
+            self.background_screen.blit(display, (575,30))
             self.clock.tick(60)
 					  #score count
             for t in range(seconds):
              self.score_count += 1
             score = font1.render('Score: ' +str(self.score_count), False, (255, 255, 0))
-            self.background_screen.blit(score, (400, 60))
+            self.background_screen.blit(score, (575, 60))
             #life display
             lives = font1.render('Lives: ' +str(self.player.health), False, (255,255,0))
             self.background_screen.blit(lives, (20,20))
