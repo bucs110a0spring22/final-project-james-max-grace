@@ -21,13 +21,13 @@ Our project is a simple yet fun game where the player moves from left to right o
 
 ## User Interface Design *(Front End Specialist)*
 
-* << Main Menu Start Screen >>
+* Main Menu Start Screen
   * The first screen seen will be the game menu screen. This screen contains the name of the game, what the character looks like, and instructions to start/play the game. If the user hits the 'space' key, the game will run. Once the game is running, if the user clicks on the right key, the character will move right, and if the user clicks on the left key, the character will move left. 
   * ![startscreen](assets/backgroundscreen.png)
-* << Game Screen >>
+* Game Screen
   * This screen is accessed when the user clicks the space button in the main menu start screen. On this screen, the character can move left/right by using the right of left arrow keys. There would also be objects spawning in at random x positions at the top of the screen. These object will fall to the bottom of the screen. Once the player dies, they will be sent to the game over screen
   * ![startscreen](assets/CS110GameBackground.jpg)
-* << Game Over Screen >>
+* Game Over Screen
   * This screen is accessed when the character dies. A background displaying "Game Over" will show. The user can click on the green "Run" button to restart the game. A message will be displayed showing how to do that
   * ![startscreen](assets/CS110GameOver.png)
 ***        
