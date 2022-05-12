@@ -7,7 +7,7 @@
 
 << [repl](#) >>
 
-<< [link to demo presentation slides](#) >>
+<< [(https://docs.google.com/presentation/d/1bFXf-G2x1juwS3Nr9xQ-eJRjKXZIUkDN0U5asCTSxJk/edit#slide=id.p)](#) >>
 
 ### Team: Goon Squad
 #### Grace Barbara, Max Argenson, James Brone
@@ -69,7 +69,7 @@ I worked as software lead/integration specialist by ensuring dryness and compata
 
 ### Front End Specialist - Max Argenson
 
-<< Front-end lead conducted significant research on the controller class and the GUI. I had to do research on how to transition between the three different states (Menu screen, Game screen, and Game Over screen) and how to modify them to add this such as an image as a background or text for example. I worked with the Back end Specialist to implement sprites such as the character and the falling objects. The controller is where most of the code is found and where the GUI is created >>
+Front-end lead conducted significant research on the controller class and the GUI. I had to do research on how to transition between the three different states (Menu screen, Game screen, and Game Over screen) and how to modify them to add this such as an image as a background or text for example. I worked with the Back end Specialist to implement sprites such as the character and the falling objects. The controller is where most of the code is found and where the GUI is created
 
 ### Back End Specialist - Grace Barbara
 

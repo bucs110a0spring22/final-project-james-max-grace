@@ -2,6 +2,7 @@ import pygame, sys
 import random
 from src import player
 from src import fallingobject
+from src import floor
 
 class Controller:
     def __init__(self, width=0, height=0):
@@ -26,11 +27,15 @@ class Controller:
         self.player = player.Player("karl", 50, 325, "assets/CS110Character2.png")
         self.player.image = pygame.transform.smoothscale(self.player.image, (50, 60))
         self.fallingobject = fallingobject.FallingObject((random.randrange(0,550)), 0, "assets/fallingobject.png")
+        self.floor = floor.Floor(0, 500)
         self.fallingobjects = pygame.sprite.Group()
         self.num_objects = 5
-        self.all_sprites = pygame.sprite.Group((self.player,))
+        self.all_sprites = pygame.sprite.Group((self.player,), (self.floor,))
+        self.lower_boundary = 200
         self.clock = pygame.time.Clock()
         self.score_count = 0
+        self.music_state = None
+        self.music_sound = pygame.mixer.Sound("assets/game_music.mp3")
 
     
     def mainloop(self):
@@ -74,6 +79,15 @@ class Controller:
       obj = fallingobject.FallingObject((random.randrange(0,550)), self.height, "assets/fallingobject.png")
       self.fallingobjects.add( (obj,) )
      self.all_sprites.add(self.fallingobjects)
+
+    def sound(self):
+     if self.music_state == None:
+       self.music_sound.play(-1)
+       self.music_state = 1
+
+    #def check_collisions(self):
+     #if pygame.sprite.spritecollide(self.player, self.fallingobjects, True):
+      #return True
     
     def gameloop(self):
         '''
@@ -82,6 +96,9 @@ class Controller:
 		:returns = None
 	      '''
         while self.game_state == "GAME":
+            pygame.mixer.init()
+            pygame.mixer.music.set_volume(0.2)
+            self.sound()
             for event in pygame.event.get():
                  if event.type == pygame.QUIT:
                      pygame.quit()
@@ -104,14 +121,22 @@ class Controller:
 
             if len(self.fallingobjects) == 0:
              self.generate_blocks()
+
 							
 					#collisions
-            collide = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
-            if(collide):
-             self.player.health-=1
-             self.fallingobjects.empty()
-								
-            if self.player.health == 0:
+						
+            playercollide = pygame.sprite.spritecollide(self.player, self.fallingobjects, True)
+            if(playercollide):
+             for object in playercollide:
+              self.player.health-=1
+              self.fallingobjects.empty()
+
+            floorcollide = pygame.sprite.spritecollide(self.floor, self.fallingobjects, True)
+            if(floorcollide):
+              for object in floorcollide:
+               self.fallingobjects.empty()
+
+            if self.player.health <= 0:
               self.game_state == "LOSE"
               self.highscore_record()
               self.gameOverScreen()
